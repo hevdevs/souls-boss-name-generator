@@ -18,17 +18,22 @@ async function getWords(wordType) {
 };
 
 async function formulateTweet(templateStr) {
-    const wordArr = templateStr.split(' ');
-    const tweetArr = [];
-    for (const word of wordArr) {
-        if (word === 'of' || word === 'the') {
-            tweetArr.push(word);
-        } else {
-            const randomWord = await getWords(word);
-            tweetArr.push(randomWord);
+    try {
+        const wordArr = templateStr.split(' ');
+        const tweetArr = [];
+        for (const word of wordArr) {
+            if (word === 'of' || word === 'the') {
+                tweetArr.push(word);
+            } else {
+                const randomWord = await getWords(word);
+                tweetArr.push(randomWord);
+            };
         };
+        return tweetArr.join(' ');
+    }
+    catch (err) {
+        throw new Error(err);
     };
-    return tweetArr.join(' ');
 };
 
 function selectTemplate(templateArr) {
