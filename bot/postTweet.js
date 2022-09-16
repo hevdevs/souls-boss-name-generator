@@ -1,14 +1,15 @@
-const rwClient = require("../../twitter-bot/client");
+const rwClient = require('../../twitter-bot/client');
+const { generateTweet } = require('../utils');
 
-const tweet = async () => {
-    try {
-        await rwClient.v2.tweet("test").then(() => {
-            console.log("tweet successful!")
-        });
-
-    } catch (err) {
-        console.log(err);
-    };
+const postTweet = async () => {
+  try {
+    const tweetStr = await generateTweet();
+    await rwClient.v2.tweet(tweetStr);
+  } catch (err) {
+    throw new Error(err);
+  };
 };
 
-tweet();
+postTweet();
+
+setInterval(postTweet, 86400000);
