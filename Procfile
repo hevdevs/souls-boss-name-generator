@@ -1,1 +1,1 @@
-worker: node postTweet.js
+worker: node ./bot/postTweet.js
