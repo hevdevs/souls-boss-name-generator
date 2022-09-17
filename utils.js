@@ -1,8 +1,9 @@
 const fs = require('fs/promises');
+const ENV = process.env.NODE_ENV || 'dev';
 
 async function getWords(wordType) {
     try {
-        const fileNames = await fs.readdir(`${__dirname}/db/test-data`);
+        const fileNames = await fs.readdir(`${__dirname}/db/${ENV}-data`);
         const wordFiles = fileNames.map((file) => {
             return file.slice(0, -6);
         });
