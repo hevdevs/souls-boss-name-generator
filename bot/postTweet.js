@@ -1,4 +1,4 @@
-const rwClient = require('../../twitter-bot/client');
+const rwClient = require('./client');
 const { generateTweet } = require('../utils');
 
 const postTweet = async () => {
