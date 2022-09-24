@@ -1,5 +1,5 @@
 const fs = require('fs/promises');
-const ENV = process.env.NODE_ENV || 'dev';
+const ENV = process.env.NODE_ENV || 'production';
 
 async function getWords(wordType) {
     try {
@@ -8,7 +8,7 @@ async function getWords(wordType) {
             return file.slice(0, -6);
         });
         if (!wordFiles.includes(wordType)) return "";
-        const wordArr = await fs.readFile(`${__dirname}/db/test-data/${wordType}s.json`);
+        const wordArr = await fs.readFile(`${__dirname}/db/${ENV}-data/${wordType}s.json`);
         const parsedWordsArr = JSON.parse(wordArr);
         const randomWord = parsedWordsArr[Math.floor(Math.random() * parsedWordsArr.length)][wordType];
         return randomWord;
