@@ -1,11 +1,6 @@
 const rwClient = require('./client');
 const { generateTweet } = require('../utils');
 
-process.on('SIGTERM', (signal) => {
-	console.log(`Process ${process.pid} received a SIGTERM signal, exiting process.`);
-	process.exit(0);
-});
-
 const postTweet = async () => {
   try {
     const tweetStr = await generateTweet();
